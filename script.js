@@ -10,15 +10,12 @@ function animate() {
     const progress = Math.min(1, Math.max(0, current / max));
 
     layers.forEach((el, i) => {
-        // data-v é a fração da altura da tela que a camada pode subir
         const shift = progress * window.innerHeight * parseFloat(el.dataset.v);
         const scale = 1 + progress * (0.06 + i * 0.08);
         el.style.transform = `translate3d(0, ${-shift.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
     });
-
     shade.style.opacity = Math.min(0.75, progress * 0.9).toFixed(3);
     bar.style.transform = `scaleX(${progress.toFixed(3)})`;
-
     requestAnimationFrame(animate);
 }
 window.addEventListener('scroll', () => {
