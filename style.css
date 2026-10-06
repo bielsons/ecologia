@@ -1,0 +1,273 @@
+:root {
+    --preto: #050806;
+    --floresta: #0d2217;
+    --musgo: #2d6a3e;
+    --folha: #8cc58a;
+    --branco: #f4f8f2;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+body {
+    background: var(--preto);
+    color: var(--branco);
+    font: 400 1.05rem/1.7 "DM Sans", system-ui, sans-serif;
+    overflow-x: hidden;
+}
+h1, h2, h3 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+}
+.stage {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: var(--preto);
+}
+
+.layer {
+    position: absolute;
+    left: -6%;
+    top: -8%;
+    width: 112%;
+    height: 125%;
+    background: url("floresta.jpg") center / cover no-repeat;
+    will-change: transform;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.l1 {
+    filter: blur(2px) brightness(1.15) saturate(0.8);
+    -webkit-mask-image: linear-gradient(#000 0 40%, transparent 62%);
+    mask-image: linear-gradient(#000 0 40%, transparent 62%);
+}
+
+.l2 {
+    filter: saturate(1.15);
+    -webkit-mask-image: linear-gradient(transparent 22%, #000 45%, #000 62%, transparent 82%);
+    mask-image: linear-gradient(transparent 22%, #000 45%, #000 62%, transparent 82%);
+}
+
+.l3 {
+    filter: brightness(0.55) contrast(1.2) saturate(1.1);
+    -webkit-mask-image: linear-gradient(transparent 52%, #000 74%);
+    mask-image: linear-gradient(transparent 52%, #000 74%);
+}
+
+.tint {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(13, 34, 23, 0.35), rgba(5, 8, 6, 0.55));
+    pointer-events: none;
+}
+
+.shade {
+    position: absolute;
+    inset: 0;
+    background: var(--preto);
+    opacity: 0;
+    pointer-events: none;
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem clamp(1.2rem, 5vw, 4rem);
+    background: linear-gradient(rgba(5, 8, 6, 0.7), transparent);
+}
+.logo {
+    font-family: "Fraunces", serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+nav {
+    display: flex;
+    gap: 1.6rem;
+}
+nav a {
+    color: var(--branco);
+    text-decoration: none;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    transition: opacity 0.3s, color 0.3s;
+}
+nav a:hover,
+nav a:focus-visible {
+    opacity: 1;
+    color: var(--folha);
+}
+a:focus-visible {
+    outline: 2px solid var(--folha);
+    outline-offset: 4px;
+}
+main {
+    position: relative;
+    z-index: 2;
+}
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem clamp(1.2rem, 8vw, 8rem);
+}
+.hero h1 {
+    font-size: clamp(3rem, 10vw, 9rem);
+    max-width: 12ch;
+}
+.hero p {
+    max-width: 46ch;
+    margin-top: 1.6rem;
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+.hint {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.9rem;
+    opacity: 0.75;
+}
+.hint i {
+    display: block;
+    width: 1px;
+    height: 48px;
+    background: var(--folha);
+    transform-origin: top;
+    animation: desce 2s ease-in-out infinite;
+}
+@keyframes desce {
+    0%   { transform: scaleY(0); }
+    60%  { transform: scaleY(1); }
+    100% { transform: scaleY(1); opacity: 0; }
+}
+.painel {
+    max-width: 640px;
+    padding: 2.4rem;
+    background: rgba(5, 8, 6, 0.58);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-left: 3px solid var(--folha);
+}
+.painel.dir {
+    margin-left: auto;
+}
+.painel h2 {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    margin-bottom: 1.2rem;
+}
+.painel p + p {
+    margin-top: 1rem;
+}
+.numeros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.numeros b {
+    display: block;
+    font: 300 clamp(2.6rem, 6vw, 4.4rem) / 1 "Fraunces", serif;
+    color: var(--folha);
+}
+.numeros span {
+    font-size: 0.95rem;
+    opacity: 0.85;
+}
+.titulo-agir {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    max-width: 16ch;
+}
+.acoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.4rem;
+}
+.acao {
+    background: var(--branco);
+    color: var(--preto);
+    padding: 1.8rem;
+}
+.acao h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.6rem;
+    color: var(--floresta);
+}
+.acao p {
+    font-size: 0.98rem;
+}
+.acao:nth-child(2) {
+    background: var(--musgo);
+    color: var(--branco);
+}
+.acao:nth-child(2) h3 {
+    color: var(--branco);
+}
+.acao:nth-child(3) {
+    background: var(--preto);
+    color: var(--branco);
+    outline: 1px solid var(--musgo);
+}
+.acao:nth-child(3) h3 {
+    color: var(--folha);
+}
+footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
+.rev {
+    opacity: 0;
+    transform: translateY(60px);
+    filter: blur(6px);
+    transition: opacity 1.2s cubic-bezier(0.2, 0.7, 0.2, 1),
+                transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1),
+                filter 1.2s;
+}
+.rev.on {
+    opacity: 1;
+    transform: none;
+    filter: none;
+}
+.rev.d1 { transition-delay: 0.15s; }
+.rev.d2 { transition-delay: 0.3s; }
+.progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--folha);
+    transform: scaleX(0);
+    transform-origin: left;
+    z-index: 20;
+}
+@media (max-width: 640px) {
+    nav { gap: 1rem; }
+    nav a { font-size: 0.85rem; }
+    .painel { padding: 1.6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .rev {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        transition: none;
+    }
+    .hint i { animation: none; }
+}
